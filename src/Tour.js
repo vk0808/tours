@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.css";
 
 const Tour = ({ id, image, info, price, name }) => {
+  const [read, setRead] = useState(false);
   return (
     <article className="single-tour">
       <img src={image} alt={name} />
@@ -10,7 +11,13 @@ const Tour = ({ id, image, info, price, name }) => {
           <h4>{name}</h4>
           <h4 className="tour-price">$ {price}</h4>
         </div>
-        <p>{info}</p>
+        <p>
+          {read ? info : `${info.substring(0, 150)}... `}
+          <button onClick={() => setRead(!read)}>
+            {" "}
+            {!read ? "read more" : "show less"}
+          </button>
+        </p>
         <button className="delete-btn">not interested</button>
       </footer>
     </article>
