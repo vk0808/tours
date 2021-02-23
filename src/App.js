@@ -31,7 +31,14 @@ export default function App() {
   useEffect(() => {
     fetchTours();
   }, []);
-
+  if (tours.length === 0) {
+    return (
+      <main>
+        <h2>no tours left</h2>
+        <button className="btn" onClick={fetchTours}>refresh</button>
+      </main>
+    );
+  }
   return (
     <div className="loading">
       {isLoading ? <ReactLoading type={"bars"} color={"blue"} /> : <Tours tours={tours} removeTour={removeTour} />}
