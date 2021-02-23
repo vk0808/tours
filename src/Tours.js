@@ -1,7 +1,8 @@
 import React from "react";
+import Tour from './Tour';
 
 const Tours = () => {
-  return <h1>Hello</h1>;
+  return <Tour />;
 };
 
 export default Tours;
