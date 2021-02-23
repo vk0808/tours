@@ -1,16 +1,17 @@
 import React from "react";
-import Tour from './Tour';
+import Tour from "./Tour";
+import "./styles.css";
 
 const Tours = ({ tours, removeTour }) => {
   return (
     <section>
       <div className="title">
         <h2>our tours</h2>
-        <div classsName="underline"></div>
+        <div className="underline"></div>
       </div>
       <div>
-        {tours.map(tour => {
-          return <Tour key={tour.id} {...tour} removeTour={removeTour}/>
+        {tours.map((tour) => {
+          return <Tour key={tour.id} {...tour} removeTour={removeTour} />;
         })}
       </div>
     </section>

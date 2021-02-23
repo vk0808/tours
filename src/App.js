@@ -1,7 +1,7 @@
-import "./styles.css";
 import React, { useState, useEffect } from "react";
 import Tours from "./Tours";
 import ReactLoading from "react-loading";
+import "./styles.css";
 
 const url = "https://course-api.com/react-tours-project";
 
@@ -31,17 +31,25 @@ export default function App() {
   useEffect(() => {
     fetchTours();
   }, []);
-  if (tours.length === 0) {
-    return (
-      <main>
-        <h2>no tours left</h2>
-        <button className="btn" onClick={fetchTours}>refresh</button>
-      </main>
-    );
+
+  const tourItem = () => {
+    if (tours.length === 0) {
+      return (
+        <main>
+          <h2>no tours left</h2>
+          <button className="btn" onClick={fetchTours}>refresh</button>
+        </main>
+      );
+    } else {
+      return (
+        <Tours tours={tours} removeTour={removeTour} />
+      );
+    } 
   }
+
   return (
     <div className="loading">
-      {isLoading ? <ReactLoading type={"bars"} color={"blue"} /> : <Tours tours={tours} removeTour={removeTour} />}
+      {isLoading ? <ReactLoading type={"bars"} color={"blue"} /> : tourItem() }
     </div>
   );
 }
