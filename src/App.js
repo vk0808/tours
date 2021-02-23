@@ -9,6 +9,11 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [tours, setTours] = useState([]);
 
+  const removeTour = (id) => {
+    const newTours = tours.filter(tour => tour.id !== id )
+    setTours(newTours)
+  }
+
   const fetchTours = async () => {
     setIsLoading(true);
 
@@ -29,7 +34,7 @@ export default function App() {
 
   return (
     <div className="loading">
-      {isLoading ? <ReactLoading type={"bars"} color={"blue"} /> : <Tours tours={tours} />}
+      {isLoading ? <ReactLoading type={"bars"} color={"blue"} /> : <Tours tours={tours} removeTour={removeTour} />}
     </div>
   );
 }
