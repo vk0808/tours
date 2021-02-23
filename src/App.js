@@ -10,9 +10,9 @@ export default function App() {
   const [tours, setTours] = useState([]);
 
   const removeTour = (id) => {
-    const newTours = tours.filter(tour => tour.id !== id )
-    setTours(newTours)
-  }
+    const newTours = tours.filter((tour) => tour.id !== id);
+    setTours(newTours);
+  };
 
   const fetchTours = async () => {
     setIsLoading(true);
@@ -37,19 +37,25 @@ export default function App() {
       return (
         <main>
           <h2>no tours left</h2>
-          <button className="btn" onClick={fetchTours}>refresh</button>
+          <button className="btn" onClick={fetchTours}>
+            refresh
+          </button>
         </main>
       );
     } else {
-      return (
-        <Tours tours={tours} removeTour={removeTour} />
-      );
-    } 
-  }
+      return <Tours tours={tours} removeTour={removeTour} />;
+    }
+  };
 
   return (
-    <div className="loading">
-      {isLoading ? <ReactLoading type={"bars"} color={"blue"} /> : tourItem() }
-    </div>
+    <>
+      {isLoading ? (
+        <div className="loading">
+          <ReactLoading type={"bars"} color={"hsl(205, 63%, 48%)"} />
+        </div>
+      ) : (
+        tourItem()
+      )}
+    </>
   );
 }
