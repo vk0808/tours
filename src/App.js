@@ -29,7 +29,7 @@ export default function App() {
 
   return (
     <div className="loading">
-      {isLoading ? <ReactLoading type={"bars"} color={"blue"} /> : <Tours />}
+      {isLoading ? <ReactLoading type={"bars"} color={"blue"} /> : <Tours tours={tours} />}
     </div>
   );
 }
