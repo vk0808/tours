@@ -1,16 +1,35 @@
 import "./styles.css";
-import React, { useState, useEffect } from 'react';
-import Tours from './Tours';
-import ReactLoading from 'react-loading';
+import React, { useState, useEffect } from "react";
+import Tours from "./Tours";
+import ReactLoading from "react-loading";
 
-const url = 'https://course-api.com/react-tours-project';
+const url = "https://course-api.com/react-tours-project";
 
 export default function App() {
-  const [isLoading, setisLoading] = useState(true);
-  
+  const [isLoading, setIsLoading] = useState(false);
+  const [tours, setTours] = useState([]);
+
+  const fetchTours = async () => {
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(url);
+      const tours = await response.json();
+      setIsLoading(false);
+      setTours(tours);
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTours();
+  }, []);
+
   return (
-    <div className="App">
-      { isLoading ? <ReactLoading type={'bars'} color={'blue'} /> : <Tours /> }
+    <div className="loading">
+      {isLoading ? <ReactLoading type={"bars"} color={"blue"} /> : <Tours />}
     </div>
   );
-};
+}
